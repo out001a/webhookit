@@ -6,17 +6,18 @@ Created on Mar 3, 2017
 '''
 from functools import wraps
 from threading import Thread
+from webhookit import app
+import sys
 import json
 import click
 import datetime
 import copy
-import app
 
 
-if unicode:  # noqa
+try:  # noqa
     # py2
     the_unicode = unicode  # noqa
-else:  # noqa
+except:  # noqa
     # py3
     the_unicode = str  # noqa
 
