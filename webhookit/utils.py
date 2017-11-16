@@ -158,6 +158,7 @@ def do_webhook_shell(server, data):
         success = False
         msg = 'There is no SCRIPT configured.'
     # end exec, log data
+    #msg = the_unicode(msg, errors='ignore') or ''
     msg = msg.strip()
     msg = msg.replace('\n', ' ')
     log('Completed execute: (%s, %s)' % (success, msg))
