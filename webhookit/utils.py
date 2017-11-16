@@ -150,7 +150,6 @@ def do_webhook_shell(server, data):
                                         data)
         else:
             log('Start to execute local command. %s' % script)
-            import commands
             # local
             (success, msg) = commands.getstatusoutput(server.get('SCRIPT', ''))
             success = success > 0 and False or True
