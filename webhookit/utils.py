@@ -15,10 +15,10 @@ import copy
 
 try:  # noqa
     # py2
-    the_unicode = unicode  # noqa
-except NameError:  # noqa
+    import commands  # noqa
+except ModuleNotFoundError:  # noqa
     # py3
-    the_unicode = str  # noqa
+    import subprocess as commands  # noqa
 
 
 def standard_response(success, data):
@@ -158,7 +158,6 @@ def do_webhook_shell(server, data):
         success = False
         msg = 'There is no SCRIPT configured.'
     # end exec, log data
-    msg = the_unicode(msg, errors='ignore') or ''
     msg = msg.strip()
     msg = msg.replace('\n', ' ')
     log('Completed execute: (%s, %s)' % (success, msg))
