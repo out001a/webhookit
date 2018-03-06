@@ -27,6 +27,7 @@ except NameError:  # noqa
     # py3
     the_unicode = str  # noqa
 
+
 def standard_response(success, data):
     '''standard response
     '''
