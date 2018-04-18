@@ -20,13 +20,6 @@ except ModuleNotFoundError:  # noqa
     # py3
     import subprocess as commands  # noqa
 
-try:  # noqa
-    # py2
-    the_unicode = unicode  # noqa
-except NameError:  # noqa
-    # py3
-    the_unicode = str  # noqa
-
 
 def standard_response(success, data):
     '''standard response
@@ -112,7 +105,7 @@ def do_ssh_cmd(ip, port, account, pkey, shell, push_data='', timeout=300):
         private_key = paramiko.RSAKey.from_private_key(pkey_file)
         s.connect(ip, port, account, pkey=private_key, timeout=10)
         pkey_file.close()
-    except (IOError, paramiko.ssh_exception.SSHException):
+    except:  # noqa
         # 如果出现异常，则使用 用户密码登陆的方式
         s.connect(ip, port, account, password=pkey, timeout=10)
 
@@ -164,7 +157,7 @@ def do_webhook_shell(server, data):
         success = False
         msg = 'There is no SCRIPT configured.'
     # end exec, log data
-    msg = the_unicode(msg, errors='ignore') or ''
+    #msg = the_unicode(msg, errors='ignore') or ''
     msg = msg.strip()
     msg = msg.replace('\n', ' ')
     log('Completed execute: (%s, %s)' % (success, msg))
